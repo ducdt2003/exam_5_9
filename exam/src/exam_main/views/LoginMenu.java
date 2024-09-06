@@ -1,7 +1,7 @@
-package views;
+package exam_main.views;
 
-import entities.User;
-import services.UserServices;
+import exam_main.entities.User;
+import exam_main.services.UserServices;
 
 
 import java.util.ArrayList;
@@ -15,18 +15,18 @@ public class LoginMenu {
         System.out.println("Hãy lựa chọn chức năng");
     }
 
-    public void selectDisplayMenu(Scanner sc, ArrayList<User> users){
+    public void selectDisplayMenu(Scanner sc,User user, ArrayList<User> users){
         displayMenu(sc);
         int choice = Integer.parseInt(sc.nextLine());
         UserServices userRegisterServices = new UserServices();
         switch (choice){
             case 1:
-                userRegisterServices.inputLogin(sc, users);
+                userRegisterServices.checkLogin(sc, user,users);
                 break;
             case 2:
-                User user = userRegisterServices.inputRegister(sc, users);
+                user = userRegisterServices.inputRegister(sc, users);
                 userRegisterServices.displayRegisters(users);
-                userRegisterServices.inputLogin(sc,users);
+                userRegisterServices.checkLogin(sc, user, users);
             default:
                 System.out.println("Lỗi đăng nhập");
         }
@@ -40,13 +40,13 @@ public class LoginMenu {
 
     }
 
-    public void selectPassWordMenu(Scanner sc, ArrayList<User> users){
+    public void selectPassWordMenu(Scanner sc, User user, ArrayList<User> users){
         inputpasswordMenu(sc);
         int choice = Integer.parseInt(sc.nextLine());
         UserServices userRegisterServices = new UserServices();
         switch (choice){
             case 1:
-                userRegisterServices.inputLogin(sc, users);
+                userRegisterServices.checkLogin(sc, user, users);
                 break;
             case 2:
                 userRegisterServices.forgotPassword(sc, users);
@@ -69,26 +69,26 @@ public class LoginMenu {
         System.out.print("Lựa chọn của bạn: ");
     }
 
-    public void selectLoginMenu(Scanner sc, ArrayList<User> users){
+    public void selectLoginMenu(Scanner sc,  User user, ArrayList<User> users){
         loginMenu();
         int choice = Integer.parseInt(sc.nextLine());
         UserServices userRegisterServices = new UserServices();
         switch (choice){
             case 1:
-                userRegisterServices.changeUserName(sc, users);
-                selectDisplayMenu(sc, users);
+                userRegisterServices.changeUserName(sc,user, users);
+                selectDisplayMenu(sc, user,users);
                 break;
             case 2:
-                userRegisterServices.changeEmail(sc, users);
-                selectDisplayMenu(sc, users);
+                userRegisterServices.changeEmail(sc,user, users);
+                selectDisplayMenu(sc, user,users);
                 break;
             case 3:
-                userRegisterServices.changePassWord(sc, users);
-                selectDisplayMenu(sc, users);
+                userRegisterServices.changePassWord(sc,user);
+                selectDisplayMenu(sc,user, users);
                 break;
             case 4:
                 System.out.println("---Đăng xuất thành công---");
-                selectDisplayMenu(sc, users);
+                selectDisplayMenu(sc,user, users);
                 break;
             case 0:
                 System.out.println("---Thoát chương trình thành công!---");

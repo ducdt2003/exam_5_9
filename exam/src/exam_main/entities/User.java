@@ -1,4 +1,4 @@
-package entities;
+package exam_main.entities;
 
 public class User {
     private String username;
@@ -9,6 +9,9 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User() {
     }
 
     public String getUsername() {
